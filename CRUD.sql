@@ -1,0 +1,136 @@
+CREATE DATABASE company_db;
+USE company_db;
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY auto_increment,
+    employee_name VARCHAR(100),
+    department VARCHAR(50),
+    salary DECIMAL(10,2),
+    city VARCHAR(50),
+    joining_date DATE,
+    status VARCHAR(20)
+);
+DESC employees;
+SHOW TABLES;
+USE company_db;
+USE company_db;
+
+INSERT INTO employees VALUES
+(101, 'Rahul Patil', 'Development', 45000, 'Pune', '2026-01-10', 'Active'),
+(102, 'Priya Sharma', 'Testing', 38000, 'Mumbai', '2026-02-15', 'Active'),
+(103, 'Amit Joshi', 'Development', 52000, 'Pune', '2025-12-05', 'Active'),
+(104, 'Sneha Kulkarni', 'HR', 35000, 'Nashik', '2026-03-20', 'Active'),
+(105, 'Rohan Deshmukh', 'Support', 30000, 'Mumbai', '2026-04-01', 'Inactive'),
+(106, 'Anjali More', 'Testing', 42000, 'Pune', '2026-05-12', 'Active');
+SELECT * FROM employees;
+SELECT employee_name FROM employees;
+SELECT employee_name,salary FROM employees;
+SELECT employee_name, department, city FROM employees;
+SELECT * FROM employees WHERE city = 'Pune';
+SELECT * FROM employees WHERE city = 'Mumbai';
+SELECT * FROM employees WHERE department = 'Development';
+SELECT * FROM employees WHERE status = 'Active';
+SELECT * FROM employees WHERE status = 'Inactive';
+SELECT * FROM employees WHERE employee_id = 103;
+SELECT * FROM employees WHERE employee_name = 'Priya Sharma';
+SELECT * FROM employees WHERE salary > 40000;
+SELECT * FROM employees WHERE salary = 35000;
+SELECT * FROM employees WHERE salary >= 42000;
+SELECT * FROM employees WHERE city = 'Pune' AND status = 'Active';
+SELECT * FROM employees WHERE department = 'Development' AND salary > 45000;
+SELECT * FROM employees WHERE city = 'Pune' OR city = 'Mumbai';
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE employees
+SET salary = 48000
+WHERE employee_name = 'Rahul Patil';
+SET SQL_SAFE_UPDATES = 1;
+UPDATE employees
+SET status = 'Active'
+WHERE employee_id = 105;
+
+UPDATE employees
+SET city = 'Pune'
+WHERE employee_id= 104;
+select *from employees;
+UPDATE employees
+SET department = 'Development'
+WHERE employee_id= 102;
+UPDATE employees
+SET salary = 45000
+WHERE employee_id = 106;
+UPDATE employees
+SET salary = salary + 3000
+WHERE employee_id = 103;
+
+UPDATE employees
+SET salary = salary + 2000
+WHERE department = 'Testing';
+
+UPDATE employees
+SET city = 'Mumbai Branch'
+WHERE city = 'Mumbai';
+
+DELETE FROM employees
+WHERE employee_id = 105;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM employees
+WHERE employee_name = 'Rohan Deshmukh';
+SET SQL_SAFE_UPDATES = 1;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM employees
+WHERE status = 'Inactive';
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM employees
+WHERE salary < 30000;
+SET SQL_SAFE_UPDATES = 1;
+DELETE FROM employees
+WHERE employee_id = 104;
+SELECT * FROM employees;
+
+ALTER TABLE employees
+ADD email VARCHAR(100);
+ALTER TABLE employees
+ADD mobile VARCHAR(15);
+ALTER TABLE employees
+MODIFY city VARCHAR(100);
+ALTER TABLE employees
+RENAME COLUMN employee_name TO name;
+ALTER TABLE employees
+DROP COLUMN mobile;
+ALTER TABLE employees
+ADD experience INT;
+
+UPDATE employees
+SET experience = 3
+WHERE employee_id = 101;
+select * from employees;
+
+
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100),
+    location VARCHAR(100)
+);
+
+INSERT INTO departments VALUES
+(1, 'Development', 'Pune'),
+(2, 'Testing', 'Mumbai'),
+(3, 'HR', 'Nagpur');
+
+select * from departments;
+
+UPDATE departments
+SET location = 'Pune'
+WHERE department_id = 2;
+
+DELETE FROM departments
+WHERE department_id = 3;
+
+ALTER TABLE departments
+RENAME TO company_departments;
+DESC company_departments;
+RENAME TABLE departments TO company_departments;
+TRUNCATE TABLE company_departments;
+select * from company_departments;
+DROP TABLE company_departments;
+SHOW TABLES;
